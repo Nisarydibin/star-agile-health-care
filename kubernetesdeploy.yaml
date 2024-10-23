@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: healthcareapp-nisary-deploy
+  #namespace: dev
+  labels:
+    app: healthcareapp-nisary-app-lbl
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: healthcareapp-nisary-app
+  template:
+    metadata:
+      labels:
+        app: healthcareapp-nisary-app
+    spec:
+      containers:
+      - name: healthcareapp-nisary-container
+        image: nisary123/healthcare-img
+        ports:
+        - containerPort: 8082
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: healthcareapp-nisary-np-service
+  #namespace: dev
+  labels:
+    app: healthcareapp-nisary-app
+spec:
+  selector:
+    app: healthcareapp-nisary-app
+  type: NodePort
+  ports:
+  - nodePort: 31030  
+    port: 8082
+    targetPort: 8082
