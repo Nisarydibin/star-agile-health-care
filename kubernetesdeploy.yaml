@@ -4,7 +4,7 @@ metadata:
   name: healthcareapp-nisary-deploy
   #namespace: dev
   labels:
-    app: healthcareapp-nisary-app-lbl
+    app: healthcareapp-nisary-app
 spec:
   replicas: 3
   selector:
